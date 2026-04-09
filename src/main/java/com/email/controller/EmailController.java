@@ -27,7 +27,8 @@ public class EmailController {
 
 	@PostMapping("/send")
 	public ResponseEntity<String> sendEmail(@RequestBody EmailRequest emailRequest) {
-		boolean success = emailService.sendTextEmail(emailRequest.getName(), emailRequest.getEmail(),
+		boolean success = emailService.sendTextEmail(emailRequest.getName(), 
+				emailRequest.getEmail(),
 				emailRequest.getSubject(), emailRequest.getMessage());
 		logger.info(emailRequest.toString());
 		if (success) {
@@ -39,9 +40,9 @@ public class EmailController {
 
 	@PostMapping("/send-html")
 	public ResponseEntity<String> sendHtmlEmail(@RequestBody EmailRequest emailRequest) {
-		boolean success = emailService.sendHtmlEmail(emailRequest.getEmail(), 
-				emailRequest.getSubject(),
-				emailRequest.getMessage());
+		boolean success = emailService.sendHtmlEmail(emailRequest.getName(), 
+				emailRequest.getEmail(),
+				emailRequest.getSubject(), emailRequest.getMessage());
 		if (success) {
 			return ResponseEntity.ok("HTML email sent successfully!");
 		} else {

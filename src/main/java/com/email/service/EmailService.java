@@ -27,31 +27,26 @@ public class EmailService {
 	private String fromName;
 
 	public boolean sendTextEmail(String name, String email, String subject, String message) {
-		 // ✅ Verified sender
-	    Email from = new Email(fromEmail, fromName);
+		// ✅ Verified sender
+		Email from = new Email(fromEmail, fromName);
 
-	    // ✅ YOU receive the email
-	    Email to = new Email(email);
+		// ✅ YOU receive the email
+		Email to = new Email(fromEmail);
 
-	    Content content = new Content(
-	        "text/plain",
-	        "Name: " + name +
-	        "\nEmail: " + email +
-	        "\n\nMessage:\n" + message
-	    );
+		Content content = new Content("text/plain", "Name: " + name + "\nEmail: " + email + "\n\nMessage:\n" + message);
 
-	    Mail mail = new Mail(from, subject, to, content);
+		Mail mail = new Mail(from, subject, to, content);
 
-	    // ✅ Set Reply-To to the user
-	    mail.setReplyTo(new Email(email));
+		// ✅ Set Reply-To to the user
+		mail.setReplyTo(new Email(email));
 
-	    return sendEmail(mail);
+		return sendEmail(mail);
 	}
 
-	public boolean sendHtmlEmail(String toEmail, String subject, String htmlBody) {
+	public boolean sendHtmlEmail(String name, String email, String subject, String message) {
 		Email from = new Email(fromEmail, fromName);
-		Email to = new Email(toEmail);
-		Content content = new Content("text/html", htmlBody);
+		Email to = new Email(email);
+		Content content = new Content("text/html", "Name: " + name + "\nEmail: " + email + "\n\nMessage:\n" + message);
 		Mail mail = new Mail(from, subject, to, content);
 		return sendEmail(mail);
 	}
