@@ -3,6 +3,8 @@ package com.email.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +15,7 @@ import com.email.service.EmailService;
 
 @RestController
 @RequestMapping("/api/email")
+@CrossOrigin("https://moradanica.github.io/")
 public class EmailController {
 	@Autowired
 	private EmailService emailService;
@@ -37,5 +40,10 @@ public class EmailController {
 		} else {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to send HTML email");
 		}
+	}
+	
+	@GetMapping("test")
+	public String test() {
+		return "Successful";
 	}
 }
