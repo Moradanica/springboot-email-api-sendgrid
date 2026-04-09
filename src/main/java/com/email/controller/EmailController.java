@@ -18,11 +18,8 @@ import com.email.service.EmailService;
 
 @RestController
 @RequestMapping("/api/email")
-@CrossOrigin(
-	    origins = "https://moradanica.github.io",
-	    allowedHeaders = "*",
-	    methods = { RequestMethod.POST, RequestMethod.GET, RequestMethod.OPTIONS }
-	)
+@CrossOrigin(origins = "https://moradanica.github.io", allowedHeaders = "*", methods = { RequestMethod.POST,
+		RequestMethod.GET, RequestMethod.OPTIONS })
 public class EmailController {
 	@Autowired
 	private EmailService emailService;
@@ -40,16 +37,17 @@ public class EmailController {
 		}
 	}
 
-//	@PostMapping("/send-html")
-//	public ResponseEntity<String> sendHtmlEmail(@RequestBody EmailRequest emailRequest) {
-//		boolean success = emailService.sendHtmlEmail(emailRequest.getTo(), emailRequest.getSubject(),
-//				emailRequest.getBody());
-//		if (success) {
-//			return ResponseEntity.ok("HTML email sent successfully!");
-//		} else {
-//			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to send HTML email");
-//		}
-//	}
+	@PostMapping("/send-html")
+	public ResponseEntity<String> sendHtmlEmail(@RequestBody EmailRequest emailRequest) {
+		boolean success = emailService.sendHtmlEmail(emailRequest.getEmail(), 
+				emailRequest.getSubject(),
+				emailRequest.getMessage());
+		if (success) {
+			return ResponseEntity.ok("HTML email sent successfully!");
+		} else {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to send HTML email");
+		}
+	}
 
 	@GetMapping("test")
 	public String test() {
