@@ -16,7 +16,7 @@ RUN ls target/   # optional: check which JAR was created
 RUN cp target/*.jar app.jar
 
 # Expose port
-EXPOSE 8080
+# EXPOSE 8080
 
 # Start the app
 ENTRYPOINT ["java", "-jar", "app.jar"]
