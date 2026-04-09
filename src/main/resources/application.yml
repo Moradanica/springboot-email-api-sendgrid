@@ -3,4 +3,4 @@ sendgrid:
     key: ${SENDGRID_API_KEY}
   from:
     email: ${SENDGRID_FROM_EMAIL}
-    name: springboot-email-api-with-sendgrid
+    name: Danica Mora
