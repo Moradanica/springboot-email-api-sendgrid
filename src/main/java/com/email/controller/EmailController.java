@@ -1,5 +1,7 @@
 package com.email.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,11 +21,13 @@ import com.email.service.EmailService;
 public class EmailController {
 	@Autowired
 	private EmailService emailService;
+	private static final Logger logger = LoggerFactory.getLogger(EmailService.class);
 
 	@PostMapping("/send")
 	public ResponseEntity<String> sendEmail(@RequestBody EmailRequest emailRequest) {
 		boolean success = emailService.sendTextEmail(emailRequest.getName(), emailRequest.getEmail(),
 				emailRequest.getSubject(), emailRequest.getMessage());
+		logger.info(emailRequest.toString());
 		if (success) {
 			return ResponseEntity.ok("Email sent successfully!");
 		} else {
