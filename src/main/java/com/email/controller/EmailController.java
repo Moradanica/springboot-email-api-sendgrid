@@ -17,7 +17,7 @@ import com.email.service.EmailService;
 
 @RestController
 @RequestMapping("/api/email")
-@CrossOrigin("https://moradanica.github.io/")
+@CrossOrigin("https://moradanica.github.io")
 public class EmailController {
 	@Autowired
 	private EmailService emailService;
