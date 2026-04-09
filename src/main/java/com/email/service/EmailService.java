@@ -28,10 +28,10 @@ public class EmailService {
 
 	public boolean sendTextEmail(String name, String email, String subject, String message) {
 		 // ✅ Verified sender
-	    Email from = new Email(email, fromName);
+	    Email from = new Email(fromEmail, fromName);
 
 	    // ✅ YOU receive the email
-	    Email to = new Email(fromEmail);
+	    Email to = new Email(email);
 
 	    Content content = new Content(
 	        "text/plain",
