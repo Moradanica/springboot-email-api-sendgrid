@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.email.dto.EmailRequest;
@@ -17,7 +18,11 @@ import com.email.service.EmailService;
 
 @RestController
 @RequestMapping("/api/email")
-@CrossOrigin("https://moradanica.github.io")
+@CrossOrigin(
+	    origins = "https://moradanica.github.io",
+	    allowedHeaders = "*",
+	    methods = { RequestMethod.POST, RequestMethod.GET, RequestMethod.OPTIONS }
+	)
 public class EmailController {
 	@Autowired
 	private EmailService emailService;
