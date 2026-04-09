@@ -22,8 +22,8 @@ public class EmailController {
 
 	@PostMapping("/send")
 	public ResponseEntity<String> sendEmail(@RequestBody EmailRequest emailRequest) {
-		boolean success = emailService.sendTextEmail(emailRequest.getTo(), emailRequest.getSubject(),
-				emailRequest.getBody());
+		boolean success = emailService.sendTextEmail(emailRequest.getName(), emailRequest.getEmail(),
+				emailRequest.getSubject(), emailRequest.getMessage());
 		if (success) {
 			return ResponseEntity.ok("Email sent successfully!");
 		} else {
@@ -31,17 +31,17 @@ public class EmailController {
 		}
 	}
 
-	@PostMapping("/send-html")
-	public ResponseEntity<String> sendHtmlEmail(@RequestBody EmailRequest emailRequest) {
-		boolean success = emailService.sendHtmlEmail(emailRequest.getTo(), emailRequest.getSubject(),
-				emailRequest.getBody());
-		if (success) {
-			return ResponseEntity.ok("HTML email sent successfully!");
-		} else {
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to send HTML email");
-		}
-	}
-	
+//	@PostMapping("/send-html")
+//	public ResponseEntity<String> sendHtmlEmail(@RequestBody EmailRequest emailRequest) {
+//		boolean success = emailService.sendHtmlEmail(emailRequest.getTo(), emailRequest.getSubject(),
+//				emailRequest.getBody());
+//		if (success) {
+//			return ResponseEntity.ok("HTML email sent successfully!");
+//		} else {
+//			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to send HTML email");
+//		}
+//	}
+
 	@GetMapping("test")
 	public String test() {
 		return "Successful";

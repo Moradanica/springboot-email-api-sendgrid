@@ -26,10 +26,10 @@ public class EmailService {
 	@Value("${sendgrid.from.name}")
 	private String fromName;
 
-	public boolean sendTextEmail(String toEmail, String subject, String body) {
-		Email from = new Email(fromEmail, fromName);
-		Email to = new Email(toEmail);
-		Content content = new Content("text/plain", body);
+	public boolean sendTextEmail(String name, String email, String subject, String message) {
+		Email from = new Email(email, name);
+		Email to = new Email(fromEmail);
+		Content content = new Content("text/plain", message);
 		Mail mail = new Mail(from, subject, to, content);
 		return sendEmail(mail);
 	}
