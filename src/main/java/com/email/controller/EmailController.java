@@ -27,8 +27,7 @@ public class EmailController {
 
 	@PostMapping("/send")
 	public ResponseEntity<String> sendEmail(@RequestBody EmailRequest emailRequest) {
-		boolean success = emailService.sendTextEmail(emailRequest.getName(), 
-				emailRequest.getEmail(),
+		boolean success = emailService.sendTextEmail(emailRequest.getName(), emailRequest.getEmail(),
 				emailRequest.getSubject(), emailRequest.getMessage());
 		logger.info(emailRequest.toString());
 		if (success) {
@@ -40,8 +39,7 @@ public class EmailController {
 
 	@PostMapping("/send-html")
 	public ResponseEntity<String> sendHtmlEmail(@RequestBody EmailRequest emailRequest) {
-		boolean success = emailService.sendHtmlEmail(emailRequest.getName(), 
-				emailRequest.getEmail(),
+		boolean success = emailService.sendHtmlEmail(emailRequest.getName(), emailRequest.getEmail(),
 				emailRequest.getSubject(), emailRequest.getMessage());
 		if (success) {
 			return ResponseEntity.ok("HTML email sent successfully!");
@@ -51,7 +49,8 @@ public class EmailController {
 	}
 
 	@GetMapping("/healthcheck")
-	public String keepAlive() {
-	    return "Backend is awake!";
+	public ResponseEntity<Void> keepAlive() {
+		// 204 No Content tells the pinger: "I'm alive, but I have nothing to say."
+		return ResponseEntity.noContent().build();
 	}
 }
