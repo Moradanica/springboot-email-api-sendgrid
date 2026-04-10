@@ -50,8 +50,8 @@ public class EmailController {
 		}
 	}
 
-	@GetMapping("test")
-	public String test() {
-		return "Successful";
+	@GetMapping("/healthcheck")
+	public String keepAlive() {
+	    return "Backend is awake!";
 	}
 }
