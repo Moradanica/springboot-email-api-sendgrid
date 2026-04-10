@@ -51,6 +51,7 @@ public class EmailController {
 	@GetMapping("/healthcheck")
 	public ResponseEntity<Void> keepAlive() {
 		// 204 No Content tells the pinger: "I'm alive, but I have nothing to say."
+		logger.info("healthcheck api called");
 		return ResponseEntity.noContent().build();
 	}
 }
