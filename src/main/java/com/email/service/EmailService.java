@@ -59,8 +59,9 @@ public class EmailService {
 			request.setBody(mail.build());
 			Response response = sendGrid.api(request);
 			logger.info("Email sent. Status code: {}", response.getStatusCode());
-			logger.debug("Response body: {}", response.getBody());
-			logger.debug("Response headers: {}", response.getHeaders());
+			logger.info("Response body: {}", response.getBody());
+			logger.info("Response headers: {}", response.getHeaders());
+			
 			return response.getStatusCode() >= 200 && response.getStatusCode() < 300;
 		} catch (IOException ex) {
 			logger.error("Error sending email: ", ex);
